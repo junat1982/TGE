@@ -3,20 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Transglobe Energy — Global Petrochemical Solutions</title>
+<title>TransGlobe Energy LLC — Global Petrochemical Solutions</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --black: #080A0C;
-    --off-black: #0F1215;
-    --panel: #131720;
-    --border: rgba(255,255,255,0.07);
-    --accent: #E8A832;
-    --accent2: #F5C842;
-    --white: #F0EDE8;
-    --muted: rgba(240,237,232,0.45);
-    --faint: rgba(240,237,232,0.12);
+    --tge-blue: #1B6BB0;
+    --tge-blue-dark: #0f4a7f;
+    --tge-blue-deep: #07325a;
+    --tge-blue-light: #3089d0;
+    --tge-accent: #00AEEF;
+    --tge-gold: #c8a74b;
+    --off-white: #f4f6f9;
+    --text-dark: #0d1b2a;
+    --text-mid: #3d5166;
+    --text-light: #7a94a8;
+    --border: #d0dce8;
+    --white: #ffffff;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -24,791 +27,992 @@
   html { scroll-behavior: smooth; }
 
   body {
-    background: var(--black);
-    color: var(--white);
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
+    font-family: 'Barlow', sans-serif;
+    color: var(--text-dark);
+    background: var(--white);
     overflow-x: hidden;
-    cursor: none;
   }
 
-  /* ── Custom cursor ── */
-  .cursor {
-    position: fixed; top: 0; left: 0; z-index: 9999;
-    width: 10px; height: 10px;
-    background: var(--accent);
-    border-radius: 50%;
-    pointer-events: none;
-    transform: translate(-50%,-50%);
-    transition: transform 0.1s, width 0.25s, height 0.25s, background 0.25s;
-  }
-  .cursor-ring {
-    position: fixed; top: 0; left: 0; z-index: 9998;
-    width: 36px; height: 36px;
-    border: 1px solid rgba(232,168,50,0.5);
-    border-radius: 50%;
-    pointer-events: none;
-    transform: translate(-50%,-50%);
-    transition: transform 0.18s ease-out, width 0.3s, height 0.3s;
-  }
-  body:hover .cursor { opacity: 1; }
-
-  /* ── Noise overlay ── */
-  body::before {
-    content:''; position: fixed; inset:0; z-index:0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-    opacity: 0.022;
-    pointer-events: none;
-  }
-
-  /* ── NAV ── */
+  /* ─── NAV ─── */
   nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 5vw;
-    height: 72px;
-    border-bottom: 1px solid var(--border);
-    background: rgba(8,10,12,0.85);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(7, 50, 90, 0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 4rem;
+    height: 68px;
+    transition: all 0.3s ease;
   }
+
   .nav-logo {
-    display: flex; flex-direction: column; line-height: 1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
     text-decoration: none;
   }
-  .nav-logo-main {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
+
+  .nav-logo-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--tge-blue);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: white;
+    letter-spacing: 0.02em;
+    flex-shrink: 0;
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+
+  .nav-logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+
+  .nav-logo-text span:first-child {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: white;
     letter-spacing: 0.12em;
-    color: var(--white);
-  }
-  .nav-logo-sub {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.28em;
-    color: var(--accent);
     text-transform: uppercase;
-    margin-top: 2px;
   }
+
+  .nav-logo-text span:last-child {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    font-size: 0.7rem;
+    color: var(--tge-accent);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+  }
+
   .nav-links {
-    display: flex; gap: 40px; list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    list-style: none;
   }
+
   .nav-links a {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.2em;
+    display: block;
+    padding: 8px 20px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: rgba(255,255,255,0.75);
     text-decoration: none;
     transition: color 0.2s;
     position: relative;
   }
+
   .nav-links a::after {
     content: '';
-    position: absolute; bottom: -4px; left: 0; right: 0;
-    height: 1px; background: var(--accent);
-    transform: scaleX(0); transform-origin: left;
-    transition: transform 0.25s ease;
+    position: absolute;
+    bottom: -2px; left: 20px; right: 20px;
+    height: 2px;
+    background: var(--tge-accent);
+    transform: scaleX(0);
+    transition: transform 0.2s ease;
   }
-  .nav-links a:hover { color: var(--white); }
-  .nav-links a:hover::after { transform: scaleX(1); }
-  .nav-cta {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--black);
-    background: var(--accent);
-    border: none;
-    padding: 10px 22px;
-    cursor: none;
-    transition: background 0.2s, transform 0.15s;
-    text-decoration: none;
-  }
-  .nav-cta:hover { background: var(--accent2); transform: translateY(-1px); }
 
-  /* ── HERO ── */
+  .nav-links a:hover { color: white; }
+  .nav-links a:hover::after { transform: scaleX(1); }
+
+  .nav-cta {
+    background: var(--tge-blue);
+    color: white !important;
+    border-radius: 4px;
+    padding: 8px 20px !important;
+    border: 1px solid var(--tge-blue-light) !important;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--tge-blue-light) !important; }
+  .nav-cta::after { display: none !important; }
+
+  /* ─── HERO ─── */
   #hero {
-    position: relative;
     min-height: 100vh;
-    display: flex; align-items: flex-end;
-    padding: 0 5vw 10vh;
+    background: var(--tge-blue-deep);
+    display: flex;
+    align-items: center;
+    position: relative;
     overflow: hidden;
   }
-  .hero-bg {
-    position: absolute; inset: 0; z-index: 0;
-    background:
-      radial-gradient(ellipse 70% 60% at 75% 40%, rgba(232,168,50,0.08) 0%, transparent 65%),
-      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(232,168,50,0.04) 0%, transparent 60%),
-      linear-gradient(160deg, #0F1215 0%, #080A0C 60%);
-  }
-  .hero-grid {
-    position: absolute; inset: 0; z-index: 0;
+
+  .hero-bg-grid {
+    position: absolute;
+    inset: 0;
     background-image:
-      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-    background-size: 80px 80px;
-    mask-image: radial-gradient(ellipse 80% 70% at 60% 50%, black 40%, transparent 80%);
+      linear-gradient(rgba(0,174,239,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,174,239,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: gridDrift 30s linear infinite;
   }
+
+  @keyframes gridDrift {
+    from { transform: translate(0,0); }
+    to { transform: translate(60px, 60px); }
+  }
+
   .hero-globe {
     position: absolute;
-    right: -5vw; top: 50%; transform: translateY(-50%);
-    width: clamp(360px, 50vw, 700px);
-    height: clamp(360px, 50vw, 700px);
-    z-index: 1;
-    opacity: 0.22;
+    right: -80px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 680px;
+    height: 680px;
+    opacity: 0.07;
     border-radius: 50%;
-    background:
-      radial-gradient(circle at 35% 35%, rgba(232,168,50,0.6) 0%, transparent 55%),
-      radial-gradient(circle at 70% 70%, rgba(245,200,66,0.3) 0%, transparent 50%),
-      conic-gradient(from 0deg, transparent, rgba(232,168,50,0.15), transparent, rgba(232,168,50,0.1), transparent);
-    border: 1px solid rgba(232,168,50,0.3);
-    box-shadow:
-      0 0 80px rgba(232,168,50,0.15),
-      inset 0 0 80px rgba(232,168,50,0.05);
+    background: conic-gradient(from 0deg, var(--tge-blue), var(--tge-accent), var(--tge-blue-dark), var(--tge-blue));
     animation: globeSpin 40s linear infinite;
   }
+
   .hero-globe::before {
-    content:''; position:absolute; inset: -2px;
+    content: '';
+    position: absolute;
+    inset: 40px;
     border-radius: 50%;
-    border: 1px dashed rgba(232,168,50,0.15);
-    animation: globeSpin 20s linear infinite reverse;
+    border: 2px solid rgba(0,174,239,0.3);
   }
+
   .hero-globe::after {
-    content:''; position:absolute; inset: 20px;
+    content: '';
+    position: absolute;
+    inset: 120px;
     border-radius: 50%;
-    border: 1px solid rgba(232,168,50,0.1);
-    background: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 18px,
-      rgba(232,168,50,0.04) 18px,
-      rgba(232,168,50,0.04) 19px
-    );
+    border: 1px solid rgba(0,174,239,0.2);
   }
+
   @keyframes globeSpin {
     from { transform: translateY(-50%) rotate(0deg); }
     to { transform: translateY(-50%) rotate(360deg); }
   }
 
-  .hero-content { position: relative; z-index: 2; max-width: 820px; }
-  .hero-tag {
-    display: inline-flex; align-items: center; gap: 10px;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px; letter-spacing: 0.22em;
-    text-transform: uppercase; color: var(--accent);
-    margin-bottom: 28px;
-    opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
-  }
-  .hero-tag::before {
-    content:''; width: 30px; height: 1px; background: var(--accent);
-  }
-  .hero-h1 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(64px, 9vw, 130px);
-    line-height: 0.92;
-    letter-spacing: 0.02em;
-    color: var(--white);
-    margin-bottom: 32px;
-    opacity: 0; animation: fadeUp 0.9s 0.35s forwards;
-  }
-  .hero-h1 em {
-    font-style: normal;
-    color: var(--accent);
-    display: block;
-  }
-  .hero-desc {
-    font-size: 17px; line-height: 1.65;
-    color: var(--muted);
-    max-width: 520px;
-    margin-bottom: 48px;
-    opacity: 0; animation: fadeUp 0.9s 0.5s forwards;
-  }
-  .hero-actions {
-    display: flex; gap: 20px; align-items: center;
-    flex-wrap: wrap;
-    opacity: 0; animation: fadeUp 0.9s 0.65s forwards;
-  }
-  .btn-primary {
-    display: inline-flex; align-items: center; gap: 12px;
-    font-family: 'DM Mono', monospace;
-    font-size: 12px; letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--black); background: var(--accent);
-    padding: 14px 30px; text-decoration: none;
-    transition: background 0.2s, gap 0.25s;
-    cursor: none;
-  }
-  .btn-primary:hover { background: var(--accent2); gap: 18px; }
-  .btn-secondary {
-    display: inline-flex; align-items: center; gap: 10px;
-    font-family: 'DM Mono', monospace;
-    font-size: 12px; letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--white);
-    text-decoration: none;
-    border-bottom: 1px solid var(--faint);
-    padding-bottom: 2px;
-    transition: color 0.2s, border-color 0.2s;
-    cursor: none;
-  }
-  .btn-secondary:hover { color: var(--accent); border-color: var(--accent); }
-
-  .hero-stats {
-    position: absolute; right: 5vw; bottom: 10vh; z-index: 2;
-    display: flex; flex-direction: column; gap: 28px;
-    opacity: 0; animation: fadeLeft 1s 0.8s forwards;
-  }
-  .stat {
-    display: flex; flex-direction: column; align-items: flex-end;
-  }
-  .stat-number {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 42px; line-height: 1;
-    color: var(--accent);
-  }
-  .stat-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px; letter-spacing: 0.2em;
-    color: var(--muted); text-transform: uppercase;
-    margin-top: 4px;
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 4rem;
+    max-width: 720px;
+    animation: fadeUp 1s ease 0.2s both;
   }
 
   @keyframes fadeUp {
-    from { opacity:0; transform: translateY(24px); }
-    to { opacity:1; transform: translateY(0); }
-  }
-  @keyframes fadeLeft {
-    from { opacity:0; transform: translateX(24px); }
-    to { opacity:1; transform: translateX(0); }
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
-  /* ── TICKER ── */
-  .ticker-wrap {
-    overflow: hidden;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    background: var(--off-black);
-    padding: 14px 0;
-    white-space: nowrap;
-  }
-  .ticker-track {
-    display: inline-flex; gap: 0;
-    animation: ticker 35s linear infinite;
-  }
-  .ticker-item {
-    display: inline-flex; align-items: center; gap: 16px;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px; letter-spacing: 0.15em;
-    text-transform: uppercase; color: var(--muted);
-    padding: 0 40px;
-  }
-  .ticker-dot { width: 4px; height: 4px; background: var(--accent); border-radius: 50%; flex-shrink:0; }
-  @keyframes ticker {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1.8rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--tge-accent);
   }
 
-  /* ── SECTION COMMON ── */
-  section { position: relative; z-index: 1; }
-  .section-inner { padding: 120px 5vw; max-width: 1400px; margin: 0 auto; }
-  .section-label {
-    display: inline-flex; align-items: center; gap: 10px;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px; letter-spacing: 0.22em;
-    text-transform: uppercase; color: var(--accent);
-    margin-bottom: 24px;
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 2px;
+    background: var(--tge-accent);
   }
-  .section-label::before { content:''; width:24px; height:1px; background:var(--accent); }
-  .section-h2 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(40px, 5vw, 72px);
+
+  .hero-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    line-height: 0.95;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.8rem;
+  }
+
+  .hero-title .accent-line {
+    display: block;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--tge-blue-light);
+    opacity: 0.7;
+  }
+
+  .hero-body {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.65);
+    max-width: 520px;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 32px;
+    background: var(--tge-blue);
+    color: white;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: var(--tge-blue-light);
+    transform: translateY(-1px);
+  }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 32px;
+    background: transparent;
+    color: white;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.3);
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .btn-outline:hover {
+    border-color: white;
+    background: rgba(255,255,255,0.06);
+  }
+
+  .hero-stats {
+    position: absolute;
+    bottom: 3rem;
+    right: 4rem;
+    display: flex;
+    gap: 3rem;
+    z-index: 2;
+    animation: fadeUp 1s ease 0.6s both;
+  }
+
+  .hero-stat {
+    text-align: right;
+  }
+
+  .hero-stat-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 2.2rem;
+    color: white;
     line-height: 1;
-    letter-spacing: 0.03em;
-    color: var(--white);
+    letter-spacing: -0.02em;
   }
 
-  /* ── ABOUT ── */
-  #about { background: var(--off-black); }
-  .about-grid {
+  .hero-stat-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-top: 4px;
+    font-weight: 500;
+  }
+
+  /* ─── SECTION SHARED ─── */
+  section { padding: 100px 4rem; }
+
+  .section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.78rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--tge-blue);
+  }
+
+  .section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 2px;
+    background: var(--tge-blue);
+  }
+
+  .section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--text-dark);
+    letter-spacing: -0.01em;
+  }
+
+  /* ─── ABOUT ─── */
+  #about {
+    background: var(--off-white);
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 80px;
     align-items: center;
-    margin-top: 64px;
   }
-  .about-copy p {
-    font-size: 16px; line-height: 1.8;
-    color: var(--muted);
-    margin-bottom: 20px;
-  }
-  .about-copy p:last-child { margin-bottom: 0; }
-  .about-copy strong { color: var(--white); font-weight: 500; }
+
   .about-visual {
     position: relative;
+  }
+
+  .about-visual-main {
+    width: 100%;
     aspect-ratio: 4/3;
-    border: 1px solid var(--border);
-    background: var(--panel);
+    background: linear-gradient(135deg, var(--tge-blue-deep) 0%, var(--tge-blue) 60%, var(--tge-accent) 100%);
+    border-radius: 8px;
     overflow: hidden;
-  }
-  .about-visual::before {
-    content:''; position:absolute; inset:0;
-    background: linear-gradient(135deg, rgba(232,168,50,0.06) 0%, transparent 60%);
-  }
-  .about-visual-inner {
-    position: absolute; inset: 0;
-    display: flex; align-items: center; justify-content: center;
-  }
-  /* animated molecule */
-  .molecule { position: relative; width: 200px; height: 200px; }
-  .mol-center {
-    position: absolute; top: 50%; left: 50%;
-    transform: translate(-50%,-50%);
-    width: 24px; height: 24px;
-    background: var(--accent);
-    border-radius: 50%;
-    box-shadow: 0 0 24px rgba(232,168,50,0.6);
-  }
-  .mol-orbit {
-    position: absolute; top: 50%; left: 50%;
-    border-radius: 50%;
-    border: 1px solid rgba(232,168,50,0.2);
-    transform: translate(-50%,-50%);
-  }
-  .mol-orbit:nth-child(2) { width: 90px; height: 90px; animation: orbit 6s linear infinite; }
-  .mol-orbit:nth-child(3) { width: 145px; height: 145px; animation: orbit 10s linear infinite reverse; }
-  .mol-orbit:nth-child(4) { width: 196px; height: 196px; animation: orbit 15s linear infinite; }
-  .mol-node {
-    position: absolute; width: 10px; height: 10px;
-    background: var(--accent2); border-radius: 50%;
-    top: -5px; left: 50%; transform: translateX(-50%);
-    box-shadow: 0 0 10px rgba(245,200,66,0.5);
-  }
-  @keyframes orbit { from{transform:translate(-50%,-50%) rotate(0deg);} to{transform:translate(-50%,-50%) rotate(360deg);} }
-
-  .about-features {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 16px; margin-top: 40px;
-  }
-  .feature-chip {
-    display: flex; align-items: center; gap: 12px;
-    padding: 14px 18px;
-    border: 1px solid var(--border);
-    background: var(--panel);
-    font-size: 13px; color: var(--muted);
-    transition: border-color 0.2s, color 0.2s;
-  }
-  .feature-chip:hover { border-color: rgba(232,168,50,0.4); color: var(--white); }
-  .feature-chip-icon { color: var(--accent); font-size: 16px; flex-shrink:0; }
-
-  /* ── PRODUCTS ── */
-  #products { background: var(--black); }
-  .products-intro {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 80px; align-items: end;
-    margin-bottom: 72px;
-  }
-  .products-intro p {
-    font-size: 16px; line-height: 1.7; color: var(--muted); margin-top: 24px;
+    position: relative;
   }
 
-  .product-filter {
-    display: flex; gap: 8px; flex-wrap: wrap;
-    margin-bottom: 40px;
+  .about-visual-main::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Ccircle cx='50' cy='50' r='45' stroke='rgba(255,255,255,0.1)' stroke-width='1' fill='none'/%3E%3Ccircle cx='50' cy='50' r='30' stroke='rgba(255,255,255,0.08)' stroke-width='1' fill='none'/%3E%3Cline x1='5' y1='50' x2='95' y2='50' stroke='rgba(255,255,255,0.06)' stroke-width='1'/%3E%3Cline x1='50' y1='5' x2='50' y2='95' stroke='rgba(255,255,255,0.06)' stroke-width='1'/%3E%3C/svg%3E") center/60% repeat;
+    opacity: 0.5;
   }
-  .filter-btn {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px; letter-spacing: 0.18em;
+
+  .about-visual-badge {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    width: 110px;
+    height: 110px;
+    background: var(--tge-blue-dark);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid white;
+  }
+
+  .about-visual-badge .num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 2.5rem;
+    color: white;
+    line-height: 1;
+  }
+
+  .about-visual-badge .lbl {
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--muted);
-    background: transparent;
-    border: 1px solid var(--border);
-    padding: 8px 16px;
-    cursor: none;
-    transition: all 0.2s;
-  }
-  .filter-btn.active, .filter-btn:hover {
-    color: var(--black);
-    background: var(--accent);
-    border-color: var(--accent);
+    color: var(--tge-accent);
+    text-align: center;
+    margin-top: 4px;
+    font-weight: 600;
   }
 
-  .products-grid {
+  .about-content {}
+
+  .about-body {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-mid);
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+    font-weight: 400;
+  }
+
+  .about-pillars {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 2rem;
+  }
+
+  .pillar {
+    padding: 20px;
+    background: white;
+    border-radius: 6px;
+    border-left: 3px solid var(--tge-blue);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  }
+
+  .pillar h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-dark);
+    margin-bottom: 6px;
+  }
+
+  .pillar p {
+    font-size: 0.82rem;
+    color: var(--text-light);
+    line-height: 1.5;
+  }
+
+  /* ─── PRODUCTS ─── */
+  #products {
+    background: white;
+  }
+
+  .products-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .products-intro {
+    font-size: 1rem;
+    color: var(--text-mid);
+    max-width: 420px;
+    line-height: 1.65;
+    margin-top: 0.75rem;
+  }
+
+  .product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1px;
+    gap: 1.5px;
     background: var(--border);
-    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1.5px solid var(--border);
   }
+
   .product-card {
-    background: var(--off-black);
-    padding: 36px 32px;
-    position: relative;
-    overflow: hidden;
-    transition: background 0.25s;
-    cursor: none;
+    background: white;
+    padding: 2rem;
+    transition: background 0.2s;
+    cursor: default;
   }
-  .product-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0;
-    width: 3px; height: 100%;
-    background: var(--accent);
-    transform: scaleY(0); transform-origin: bottom;
-    transition: transform 0.3s ease;
+
+  .product-card:hover {
+    background: #f0f6fb;
   }
-  .product-card:hover { background: var(--panel); }
-  .product-card:hover::before { transform: scaleY(1); }
-  .product-card-icon {
-    font-size: 28px; margin-bottom: 20px;
-    display: block;
+
+  .product-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1rem;
   }
-  .product-card-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px; letter-spacing: 0.05em;
-    color: var(--white); margin-bottom: 16px;
+
+  .product-icon {
+    width: 38px;
+    height: 38px;
+    background: linear-gradient(135deg, var(--tge-blue), var(--tge-accent));
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
   }
-  .product-list {
+
+  .product-icon svg {
+    width: 18px;
+    height: 18px;
+    stroke: white;
+    fill: none;
+    stroke-width: 2;
+  }
+
+  .product-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-dark);
+  }
+
+  .product-items {
     list-style: none;
-    display: flex; flex-direction: column; gap: 7px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
   }
-  .product-list li {
-    font-size: 13px; color: var(--muted);
-    padding-left: 14px; position: relative;
-    transition: color 0.15s;
-  }
-  .product-list li::before {
-    content: '—';
-    position: absolute; left: 0;
-    color: var(--accent); font-size: 10px;
-    top: 1px;
-  }
-  .product-card:hover .product-list li { color: rgba(240,237,232,0.7); }
-  .product-card-desc {
-    font-size: 12.5px; line-height: 1.6;
-    color: var(--muted);
-    margin-bottom: 16px;
-    opacity: 0.85;
-  }
-  .product-card:hover .product-card-desc { opacity: 1; }
-  .product-count {
-    position: absolute; top: 24px; right: 24px;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 36px; color: var(--faint);
-    line-height: 1;
-    transition: color 0.25s;
-  }
-  .product-card:hover .product-count { color: rgba(232,168,50,0.12); }
 
-  /* ── PROCESS ── */
-  #process {
-    background: var(--off-black);
+  .product-items li {
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    padding: 4px 0 4px 14px;
+    position: relative;
+    line-height: 1.4;
+  }
+
+  .product-items li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--tge-blue);
+    opacity: 0.4;
+  }
+
+  /* ─── WHY US ─── */
+  #why {
+    background: var(--tge-blue-deep);
+    position: relative;
     overflow: hidden;
   }
-  .process-steps {
+
+  #why::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,174,239,0.1);
+    pointer-events: none;
+  }
+
+  #why::after {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,174,239,0.07);
+    pointer-events: none;
+  }
+
+  .why-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    margin-top: 64px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 3rem;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px;
+    overflow: hidden;
   }
-  .process-step {
-    background: var(--off-black);
-    padding: 48px 36px;
-    position: relative;
-    transition: background 0.25s;
-  }
-  .process-step:hover { background: var(--panel); }
-  .step-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 72px; color: var(--faint); line-height: 1;
-    margin-bottom: 20px;
-    transition: color 0.25s;
-  }
-  .process-step:hover .step-num { color: rgba(232,168,50,0.1); }
-  .step-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 24px; letter-spacing: 0.04em;
-    color: var(--white); margin-bottom: 12px;
-  }
-  .step-desc {
-    font-size: 14px; line-height: 1.65; color: var(--muted);
-  }
-  .step-arrow {
-    position: absolute; top: 48px; right: -18px; z-index: 2;
-    color: var(--accent); font-size: 22px;
-  }
-  .process-step:last-child .step-arrow { display: none; }
 
-  /* ── COVERAGE ── */
-  #coverage { background: var(--black); }
-  .coverage-inner {
-    display: grid; grid-template-columns: 1fr 1.4fr;
-    gap: 80px; align-items: center;
-    margin-top: 64px;
+  .why-card {
+    padding: 2.5rem 2rem;
+    background: transparent;
+    transition: background 0.2s;
   }
-  .coverage-copy p {
-    font-size: 16px; line-height: 1.8; color: var(--muted); margin-top: 24px;
-  }
-  .regions {
-    display: flex; flex-direction: column; gap: 12px; margin-top: 36px;
-  }
-  .region-row {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 14px 20px;
-    border: 1px solid var(--border);
-    transition: border-color 0.2s, background 0.2s;
-  }
-  .region-row:hover { border-color: rgba(232,168,50,0.4); background: var(--panel); }
-  .region-name {
-    font-family: 'DM Mono', monospace;
-    font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--white);
-  }
-  .region-bar-wrap { flex: 1; margin: 0 24px; height: 2px; background: var(--faint); }
-  .region-bar { height: 100%; background: var(--accent); }
-  .region-pct {
-    font-family: 'DM Mono', monospace;
-    font-size: 12px; color: var(--accent);
-  }
-  .map-placeholder {
-    aspect-ratio: 16/10;
-    background: var(--panel);
-    border: 1px solid var(--border);
-    position: relative; overflow: hidden;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .map-svg { width: 90%; height: 90%; opacity: 0.55; }
 
-  /* ── CONTACT ── */
-  #contact { background: var(--off-black); }
-  .contact-grid {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 80px; margin-top: 64px;
+  .why-card:hover {
+    background: rgba(255,255,255,0.03);
   }
-  .contact-info { display: flex; flex-direction: column; gap: 32px; }
-  .info-item {}
-  .info-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px; letter-spacing: 0.22em;
-    text-transform: uppercase; color: var(--accent);
-    margin-bottom: 8px;
-  }
-  .info-value {
-    font-size: 16px; color: var(--white); line-height: 1.5;
-  }
-  .info-value a { color: var(--white); text-decoration: none; transition: color 0.2s; }
-  .info-value a:hover { color: var(--accent); }
 
-  .contact-form { display: flex; flex-direction: column; gap: 20px; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .form-group { display: flex; flex-direction: column; gap: 8px; }
-  .form-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px; letter-spacing: 0.2em;
-    text-transform: uppercase; color: var(--muted);
+  .why-card-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 3.5rem;
+    color: var(--tge-blue-light);
+    opacity: 0.25;
+    line-height: 1;
+    margin-bottom: 1rem;
+    letter-spacing: -0.03em;
   }
-  .form-input, .form-textarea {
-    background: var(--panel);
+
+  .why-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: white;
+    margin-bottom: 0.75rem;
+  }
+
+  .why-card p {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  .why-header .section-title { color: white; }
+  .why-header .section-eyebrow { color: var(--tge-accent); }
+  .why-header .section-eyebrow::before { background: var(--tge-accent); }
+
+  /* ─── CONTACT ─── */
+  #contact {
+    background: var(--off-white);
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .contact-info h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    text-transform: uppercase;
+    color: var(--text-dark);
+    line-height: 1.05;
+    margin-bottom: 1.2rem;
+  }
+
+  .contact-info p {
+    font-size: 0.95rem;
+    color: var(--text-mid);
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+  }
+
+  .contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .contact-item-icon {
+    width: 38px;
+    height: 38px;
+    background: var(--tge-blue);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .contact-item-icon svg {
+    width: 16px;
+    height: 16px;
+    stroke: white;
+    fill: none;
+    stroke-width: 2;
+  }
+
+  .contact-item-text strong {
+    display: block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 3px;
+  }
+
+  .contact-item-text span {
+    font-size: 0.9rem;
+    color: var(--text-dark);
+  }
+
+  .contact-form-wrap {
+    background: white;
+    border-radius: 10px;
+    padding: 2.5rem;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.07);
     border: 1px solid var(--border);
-    color: var(--white);
-    padding: 14px 18px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
+  }
+
+  .contact-form-wrap h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 14px;
+  }
+
+  .form-group label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-light);
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    padding: 11px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 5px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.88rem;
+    color: var(--text-dark);
+    background: var(--off-white);
     outline: none;
     transition: border-color 0.2s;
-    resize: none;
-    cursor: none;
   }
-  .form-input:focus, .form-textarea:focus {
-    border-color: var(--accent);
+
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    border-color: var(--tge-blue);
+    background: white;
   }
-  .form-input::placeholder, .form-textarea::placeholder { color: var(--faint); }
-  .form-textarea { min-height: 130px; }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+
   .form-submit {
-    display: inline-flex; align-items: center; gap: 14px;
-    font-family: 'DM Mono', monospace;
-    font-size: 12px; letter-spacing: 0.18em;
+    width: 100%;
+    padding: 14px;
+    background: var(--tge-blue);
+    color: white;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.92rem;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--black); background: var(--accent);
-    border: none; padding: 16px 36px;
-    cursor: none; align-self: flex-start;
-    transition: background 0.2s, gap 0.25s;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 6px;
   }
-  .form-submit:hover { background: var(--accent2); gap: 20px; }
 
-  /* ── FOOTER ── */
+  .form-submit:hover {
+    background: var(--tge-blue-light);
+  }
+
+  /* ─── FOOTER ─── */
   footer {
-    border-top: 1px solid var(--border);
-    padding: 40px 5vw;
-    display: flex; align-items: center; justify-content: space-between;
-    flex-wrap: wrap; gap: 20px;
-    background: var(--black);
+    background: var(--text-dark);
+    padding: 3rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem;
   }
-  .footer-logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 18px; letter-spacing: 0.1em; color: var(--white);
-  }
-  .footer-copy {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px; letter-spacing: 0.1em;
-    color: var(--muted);
-  }
-  .footer-links {
-    display: flex; gap: 28px; list-style: none;
-  }
-  .footer-links a {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px; letter-spacing: 0.18em;
-    text-transform: uppercase; color: var(--muted);
-    text-decoration: none; transition: color 0.2s;
-  }
-  .footer-links a:hover { color: var(--accent); }
 
-  /* scroll fade */
+  .footer-logo-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: white;
+  }
+
+  .footer-logo-sub {
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--tge-accent);
+    margin-top: 2px;
+    font-weight: 500;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a {
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: white; }
+
+  .footer-copy {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.3);
+  }
+
+  /* ─── SCROLL REVEAL ─── */
   .reveal {
-    opacity: 0; transform: translateY(30px);
+    opacity: 0;
+    transform: translateY(24px);
     transition: opacity 0.7s ease, transform 0.7s ease;
   }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
 
-  /* ── MOBILE ── */
-  @media(max-width: 900px) {
-    .nav-links { display: none; }
-    .about-grid, .products-intro, .coverage-inner, .contact-grid { grid-template-columns: 1fr; gap: 48px; }
-    .process-steps { grid-template-columns: 1fr 1fr; }
-    .step-arrow { display: none; }
-    .hero-stats { display: none; }
-    .hero-globe { opacity: 0.1; right: -15vw; }
-    .form-row { grid-template-columns: 1fr; }
-    .about-features { grid-template-columns: 1fr; }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
   }
-  @media(max-width: 600px) {
-    .process-steps { grid-template-columns: 1fr; }
-    .hero-h1 { font-size: 56px; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 0 1.5rem; }
+    section { padding: 64px 1.5rem; }
+    #about, #contact { grid-template-columns: 1fr; gap: 40px; }
+    .why-grid { grid-template-columns: 1fr 1fr; }
+    .hero-content { padding: 0 1.5rem; }
+    .hero-stats { right: 1.5rem; bottom: 2rem; gap: 1.5rem; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { padding: 2.5rem 1.5rem; }
+  }
+
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    .why-grid { grid-template-columns: 1fr; }
+    .hero-stats { display: none; }
+    .about-pillars { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
 
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-
 <!-- NAV -->
 <nav>
   <a class="nav-logo" href="#">
-    <span class="nav-logo-main">TRANSGLOBE</span>
-    <span class="nav-logo-sub">Energy</span>
+    <div class="nav-logo-icon">TGE</div>
+    <div class="nav-logo-text">
+      <span>TransGlobe</span>
+      <span>Energy LLC</span>
+    </div>
   </a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#products">Products</a></li>
-    <li><a href="#process">Process</a></li>
-    <li><a href="#coverage">Coverage</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#contact" class="nav-cta">Contact Us</a></li>
   </ul>
-  <a href="#contact" class="nav-cta">Get In Touch →</a>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
+  <div class="hero-bg-grid"></div>
   <div class="hero-globe"></div>
 
   <div class="hero-content">
-    <div class="hero-tag">Specialty &amp; Commodity Chemical Distribution</div>
-    <h1 class="hero-h1">
-      Precision<br>
-      <em>Chemistry.</em><br>
-      Global Scale.
+    <div class="hero-eyebrow">Global Petrochemical Solutions</div>
+    <h1 class="hero-title">
+      Moving<br>
+      Chemicals<br>
+      <span class="accent-line">Worldwide</span>
     </h1>
-    <p class="hero-desc">
-      Transglobe Energy connects the world's leading chemical producers with industrial buyers across four continents — delivering reliability, transparency, and commercial agility at every stage of the supply chain.
+    <p class="hero-body">
+      TransGlobe Energy is a global logistics and marketing company facilitating the efficient movement of specialty, commodity, and intermediate chemicals across international supply chains.
     </p>
     <div class="hero-actions">
-      <a href="#products" class="btn-primary">View Our Portfolio →</a>
-      <a href="#about" class="btn-secondary">Who We Are ↓</a>
+      <a href="#products" class="btn-primary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+        Our Products
+      </a>
+      <a href="#contact" class="btn-outline">Contact Us</a>
     </div>
   </div>
 
   <div class="hero-stats">
-    <div class="stat">
-      <span class="stat-number">50+</span>
-      <span class="stat-label">Active Products</span>
+    <div class="hero-stat">
+      <div class="hero-stat-num">50+</div>
+      <div class="hero-stat-label">Product Lines</div>
     </div>
-    <div class="stat">
-      <span class="stat-number">12</span>
-      <span class="stat-label">Product Categories</span>
+    <div class="hero-stat">
+      <div class="hero-stat-num">Global</div>
+      <div class="hero-stat-label">Reach</div>
     </div>
-    <div class="stat">
-      <span class="stat-number">4</span>
-      <span class="stat-label">Continents Served</span>
+    <div class="hero-stat">
+      <div class="hero-stat-num">NY</div>
+      <div class="hero-stat-label">Headquarters</div>
     </div>
   </div>
 </section>
 
-<!-- TICKER -->
-<div class="ticker-wrap">
-  <div class="ticker-track">
-    <span class="ticker-item"><span class="ticker-dot"></span>Benzyl Alcohol</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Monoethylene Glycol</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Isopropyl Alcohol</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Ethylenediamine</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>DOTP Plasticizers</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>LABSA / DDBSA</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Propylene Glycol</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>MEA Triazine</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Isoprene</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Alkyl Pyridine Quat</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Benzyl Alcohol</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Monoethylene Glycol</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Isopropyl Alcohol</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Ethylenediamine</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>DOTP Plasticizers</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>LABSA / DDBSA</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Propylene Glycol</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>MEA Triazine</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Isoprene</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Alkyl Pyridine Quat</span>
-  </div>
-</div>
-
 <!-- ABOUT -->
 <section id="about">
-  <div class="section-inner">
-    <div class="section-label">About Us</div>
-    <h2 class="section-h2">Built on Expertise.<br>Driven by Partnership.</h2>
-
-    <div class="about-grid reveal">
-      <div class="about-copy">
-        <p>
-          <strong>Transglobe Energy</strong> is a New York-based specialty chemical distribution and global trade company with a singular focus: making complex international supply chains perform with precision. We act as a strategic bridge between world-class chemical producers and the industrial buyers who depend on consistent, high-quality inputs to operate.
-        </p>
-        <p>
-          Our team combines deep technical knowledge of chemical markets with hands-on expertise in international logistics, trade compliance, and commercial negotiation. This dual competency allows us to offer more than sourcing — we provide <strong>end-to-end supply chain intelligence</strong> that reduces risk, shortens lead times, and creates measurable cost efficiencies for our clients.
-        </p>
-        <p>
-          We serve manufacturers, formulators, and trading houses across North America, Asia Pacific, Europe, and the Middle East — operating with the flexibility of a specialist firm and the reach of a global network. Whether you require spot procurement or long-term supply agreements, Transglobe Energy delivers with reliability and commercial integrity.
-        </p>
-
-        <div class="about-features">
-          <div class="feature-chip"><span class="feature-chip-icon">⚗</span>Specialty &amp; Commodity Chemicals</div>
-          <div class="feature-chip"><span class="feature-chip-icon">🌐</span>International Trade &amp; Logistics</div>
-          <div class="feature-chip"><span class="feature-chip-icon">📦</span>End-to-End Supply Chain</div>
-          <div class="feature-chip"><span class="feature-chip-icon">♻</span>Responsible Sourcing</div>
-        </div>
+  <div class="about-visual reveal">
+    <div class="about-visual-main"></div>
+    <div class="about-visual-badge">
+      <span class="num">25+</span>
+      <span class="lbl">Years Experience</span>
+    </div>
+  </div>
+  <div class="about-content reveal">
+    <div class="section-eyebrow">Our Story</div>
+    <h2 class="section-title">Built for Global Trade</h2>
+    <p class="about-body">
+      TransGlobe Energy is a global logistics and marketing company facilitating the efficient movement of petrochemicals worldwide. We deliver sustainable, value-driven solutions to the complex supply chain of international trade — empowering suppliers and customers to achieve their core competencies.
+    </p>
+    <div class="about-pillars">
+      <div class="pillar">
+        <h4>Supply Chain Expertise</h4>
+        <p>Deep knowledge of international chemical trade logistics and compliance.</p>
       </div>
-
-      <div class="about-visual">
-        <div class="about-visual-inner">
-          <div class="molecule">
-            <div class="mol-center"></div>
-            <div class="mol-orbit"><div class="mol-node"></div></div>
-            <div class="mol-orbit"><div class="mol-node"></div></div>
-            <div class="mol-orbit"><div class="mol-node"></div></div>
-          </div>
-        </div>
+      <div class="pillar">
+        <h4>Global Network</h4>
+        <p>Established relationships with suppliers and buyers across continents.</p>
+      </div>
+      <div class="pillar">
+        <h4>Value-Driven</h4>
+        <p>Competitive pricing and transparent partnerships at every step.</p>
+      </div>
+      <div class="pillar">
+        <h4>Sustainability</h4>
+        <p>Committed to responsible and efficient chemical distribution.</p>
       </div>
     </div>
   </div>
@@ -816,367 +1020,335 @@
 
 <!-- PRODUCTS -->
 <section id="products">
-  <div class="section-inner">
-    <div class="products-intro reveal">
-      <div>
-        <div class="section-label">Our Products</div>
-        <h2 class="section-h2">A Portfolio Built<br>for Industry</h2>
-      </div>
-      <p>We maintain an extensive and continuously evolving portfolio spanning twelve chemical categories. Each product is sourced from vetted, globally certified manufacturers — ensuring consistent specification, regulatory compliance, and uninterrupted availability for our customers' production requirements.</p>
-    </div>
-
-    <div class="product-filter reveal">
-      <button class="filter-btn active" onclick="filterProducts('all', this)">All Categories</button>
-      <button class="filter-btn" onclick="filterProducts('benzyl', this)">Benzyl</button>
-      <button class="filter-btn" onclick="filterProducts('glycols', this)">Glycols</button>
-      <button class="filter-btn" onclick="filterProducts('amines', this)">Amines</button>
-      <button class="filter-btn" onclick="filterProducts('others', this)">Others</button>
-    </div>
-
-    <div class="products-grid reveal" id="productGrid">
-
-      <div class="product-card" data-cat="benzyl">
-        <span class="product-count">01</span>
-        <span class="product-card-icon">🧪</span>
-        <div class="product-card-title">Benzyl Products</div>
-        <p class="product-card-desc">Aromatic compounds widely used in fragrances, pharmaceuticals, coatings, and chemical synthesis. Sourced to high-purity grades for exacting industrial applications.</p>
-        <ul class="product-list">
-          <li>Benzyl Alcohol</li>
-          <li>Benzaldehyde</li>
-          <li>Benzyl Chloride</li>
-          <li>Benzyl Acetate</li>
-          <li>Benzyl Benzoate</li>
-        </ul>
-      </div>
-
-      <div class="product-card" data-cat="glycols">
-        <span class="product-count">02</span>
-        <span class="product-card-icon">💧</span>
-        <div class="product-card-title">Glycols</div>
-        <p class="product-card-desc">Essential intermediates for polyester resins, antifreeze, HVAC systems, and personal care formulations. Available across the full MEG–TEG and propylene glycol spectrum.</p>
-        <ul class="product-list">
-          <li>Monoethylene Glycol (MEG)</li>
-          <li>Diethylene Glycol (DEG)</li>
-          <li>Triethylene Glycol (TEG)</li>
-          <li>Propylene Glycol (PGi)</li>
-          <li>Hexylene Glycol</li>
-        </ul>
-      </div>
-
-      <div class="product-card" data-cat="amines">
-        <span class="product-count">03</span>
-        <span class="product-card-icon">⚗️</span>
-        <div class="product-card-title">Ethanolamines</div>
-        <p class="product-card-desc">Multifunctional amines serving as key building blocks in gas treatment, detergent formulation, agricultural chemicals, and personal care products.</p>
-        <ul class="product-list">
-          <li>Monoethanolamine (MEA)</li>
-          <li>Diethanolamine (DEA)</li>
-          <li>Triethanolamine (TEA)</li>
-        </ul>
-      </div>
-
-      <div class="product-card" data-cat="glycols">
-        <span class="product-count">04</span>
-        <span class="product-card-icon">🔬</span>
-        <div class="product-card-title">Glycol Ethers</div>
-        <p class="product-card-desc">High-performance solvents critical to coatings, inks, cleaners, and semiconductor manufacturing. Offered across the full ethylene and propylene glycol ether series.</p>
-        <ul class="product-list">
-          <li>Ethylene Glycol Monobutyl Ether (EB)</li>
-          <li>Diethylene Glycol Monobutyl Ether (DB)</li>
-          <li>Propylene Glycol Monomethyl Ether (PM)</li>
-          <li>Dipropylene Glycol Monomethyl Ether (DPM)</li>
-          <li>PMA, TPM, TB</li>
-        </ul>
-      </div>
-
-      <div class="product-card" data-cat="amines">
-        <span class="product-count">05</span>
-        <span class="product-card-icon">🧬</span>
-        <div class="product-card-title">Ethyleneamines</div>
-        <p class="product-card-desc">Versatile polyamine intermediates used in epoxy curing agents, chelating agents, fuel additives, and textile auxiliaries across a broad industrial spectrum.</p>
-        <ul class="product-list">
-          <li>Aminoethylethanolamine (AEEA)</li>
-          <li>Ethylenediamine (EDA)</li>
-          <li>Diethylenetriamine (DETA)</li>
-          <li>Tetraethylenepentamine (TEPA)</li>
-          <li>Triethylenetrtramine (TETA)</li>
-        </ul>
-      </div>
-
-      <div class="product-card" data-cat="others">
-        <span class="product-count">06</span>
-        <span class="product-card-icon">🏭</span>
-        <div class="product-card-title">Plasticizers</div>
-        <p class="product-card-desc">Non-phthalate and specialty plasticizers that enhance flexibility, durability, and processing performance in PVC compounds, wire and cable insulation, and film applications.</p>
-        <ul class="product-list">
-          <li>DOTP</li>
-          <li>DINP</li>
-          <li>TOTM</li>
-          <li>DOA</li>
-          <li>DINCH / DHIN · TPEG · VPEG</li>
-        </ul>
-      </div>
-
-      <div class="product-card" data-cat="others">
-        <span class="product-count">07</span>
-        <span class="product-card-icon">🌿</span>
-        <div class="product-card-title">C5 Products</div>
-        <p class="product-card-desc">Reactive diene and olefin monomers derived from steam cracker C5 streams, serving the synthetic rubber, resin, and adhesive industries with precision-spec material.</p>
-        <ul class="product-list">
-          <li>Isoprene (IPM)</li>
-          <li>Dicyclopentadiene (DCPD)</li>
-          <li>Piperylene</li>
-          <li>Isoamylene</li>
-        </ul>
-      </div>
-
-      <div class="product-card" data-cat="others">
-        <span class="product-count">08</span>
-        <span class="product-card-icon">🧴</span>
-        <div class="product-card-title">Surfactants &amp; Acids</div>
-        <p class="product-card-desc">Surface-active agents and organic acid intermediates for detergent manufacturing, agrochemical formulation, and industrial cleaning — supplied to technical and industrial-grade specifications.</p>
-        <ul class="product-list">
-          <li>Alkyl / Fatty Alcohol Ethoxylates</li>
-          <li>Castor Oil Ethoxylates</li>
-          <li>SMCA / MCA</li>
-          <li>LABSA / DDBSA</li>
-          <li>Isophthalic Acid</li>
-        </ul>
-      </div>
-
-      <div class="product-card" data-cat="others">
-        <span class="product-count">09</span>
-        <span class="product-card-icon">⚡</span>
-        <div class="product-card-title">Specialties</div>
-        <p class="product-card-desc">A curated selection of high-value specialty chemicals for oilfield treatment, pharmaceutical synthesis, and advanced industrial processes — including custom-formulated triazine blends.</p>
-        <ul class="product-list">
-          <li>Alkyl Pyridine Quat</li>
-          <li>Alkyl Pyridine</li>
-          <li>Isopropyl Alcohol (IPA)</li>
-          <li>Pentaerythritol</li>
-          <li>MEA Triazine 50% & 78%</li>
-        </ul>
-      </div>
-
+  <div class="products-header reveal">
+    <div>
+      <div class="section-eyebrow">Portfolio</div>
+      <h2 class="section-title">Our Products</h2>
+      <p class="products-intro">A comprehensive range of specialty, intermediate, and commodity chemicals serving diverse industries worldwide.</p>
     </div>
   </div>
-</section>
 
-<!-- PROCESS -->
-<section id="process">
-  <div class="section-inner">
-    <div class="section-label">How We Work</div>
-    <h2 class="section-h2">From Source to Delivery</h2>
+  <div class="product-grid reveal">
 
-    <div class="process-steps reveal">
-      <div class="process-step">
-        <div class="step-num">01</div>
-        <div class="step-title">Sourcing</div>
-        <p class="step-desc">We identify and qualify reliable producers and suppliers across global petrochemical markets, ensuring consistent quality and availability.</p>
-        <span class="step-arrow">→</span>
-      </div>
-      <div class="process-step">
-        <div class="step-num">02</div>
-        <div class="step-title">Procurement</div>
-        <p class="step-desc">Strategic purchasing and contract management to secure competitive pricing and favorable terms for our customers worldwide.</p>
-        <span class="step-arrow">→</span>
-      </div>
-      <div class="process-step">
-        <div class="step-num">03</div>
-        <div class="step-title">Logistics</div>
-        <p class="step-desc">End-to-end freight management, customs clearance, and documentation — we handle all the complexity of international chemical shipping.</p>
-        <span class="step-arrow">→</span>
-      </div>
-      <div class="process-step">
-        <div class="step-num">04</div>
-        <div class="step-title">Delivery</div>
-        <p class="step-desc">On-time, on-spec delivery to customers with full visibility and traceability throughout the supply chain journey.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- COVERAGE -->
-<section id="coverage">
-  <div class="section-inner">
-    <div class="section-label">Global Reach</div>
-    <h2 class="section-h2">Worldwide Coverage</h2>
-
-    <div class="coverage-inner reveal">
-      <div class="coverage-copy">
-        <p>Our global network spans key chemical-producing and consuming regions, giving us the reach and relationships to source and deliver wherever your business operates.</p>
-
-        <div class="regions">
-          <div class="region-row">
-            <span class="region-name">North America</span>
-            <div class="region-bar-wrap"><div class="region-bar" style="width:90%"></div></div>
-            <span class="region-pct">90%</span>
-          </div>
-          <div class="region-row">
-            <span class="region-name">Asia Pacific</span>
-            <div class="region-bar-wrap"><div class="region-bar" style="width:75%"></div></div>
-            <span class="region-pct">75%</span>
-          </div>
-          <div class="region-row">
-            <span class="region-name">Europe</span>
-            <div class="region-bar-wrap"><div class="region-bar" style="width:65%"></div></div>
-            <span class="region-pct">65%</span>
-          </div>
-          <div class="region-row">
-            <span class="region-name">Middle East</span>
-            <div class="region-bar-wrap"><div class="region-bar" style="width:55%"></div></div>
-            <span class="region-pct">55%</span>
-          </div>
+    <div class="product-card">
+      <div class="product-card-header">
+        <div class="product-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg>
         </div>
+        <h3>Benzyl Products</h3>
       </div>
+      <ul class="product-items">
+        <li>Benzyl Alcohol</li>
+        <li>Benzaldehyde</li>
+        <li>Benzyl Chloride</li>
+        <li>Benzyl Acetate</li>
+        <li>Benzyl Benzoate</li>
+      </ul>
+    </div>
 
-      <div class="map-placeholder">
-        <svg class="map-svg" viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- simplified world outline paths -->
-          <path d="M80 180 Q100 160 130 165 Q160 155 185 170 Q200 160 220 175 Q235 165 250 175 L255 210 Q240 230 220 225 Q200 240 185 230 Q160 245 130 235 Q100 225 80 210 Z" fill="rgba(232,168,50,0.12)" stroke="rgba(232,168,50,0.4)" stroke-width="1"/>
-          <path d="M260 155 Q290 140 330 145 Q360 135 390 140 Q420 135 445 145 L450 180 Q425 200 390 195 Q355 205 325 198 Q290 205 260 195 Z" fill="rgba(232,168,50,0.08)" stroke="rgba(232,168,50,0.3)" stroke-width="1"/>
-          <path d="M340 220 Q380 205 420 215 Q450 210 475 220 Q490 230 485 255 Q465 275 440 270 Q415 280 385 273 Q355 278 335 265 Q320 248 340 220 Z" fill="rgba(232,168,50,0.06)" stroke="rgba(232,168,50,0.25)" stroke-width="1"/>
-          <path d="M460 175 Q500 160 540 165 Q570 158 595 168 Q615 158 630 172 L635 205 Q615 225 590 218 Q565 230 540 225 Q510 233 480 225 Q458 212 460 175 Z" fill="rgba(232,168,50,0.1)" stroke="rgba(232,168,50,0.35)" stroke-width="1"/>
-          <path d="M510 230 Q550 218 585 228 Q610 222 628 238 Q635 258 620 275 Q595 285 565 280 Q535 288 510 275 Q495 258 510 230 Z" fill="rgba(232,168,50,0.07)" stroke="rgba(232,168,50,0.28)" stroke-width="1"/>
-          <path d="M565 170 Q590 155 620 158 Q645 152 665 162 Q680 158 695 166 L700 195 Q678 212 655 207 Q630 218 607 212 Q580 220 562 208 Z" fill="rgba(232,168,50,0.09)" stroke="rgba(232,168,50,0.32)" stroke-width="1"/>
-          <!-- dots for key cities -->
-          <circle cx="150" cy="195" r="5" fill="var(--accent)" opacity="0.9"/>
-          <circle cx="375" cy="172" r="4" fill="var(--accent)" opacity="0.8"/>
-          <circle cx="555" cy="210" r="4" fill="var(--accent)" opacity="0.8"/>
-          <circle cx="630" cy="185" r="4" fill="var(--accent)" opacity="0.8"/>
-          <!-- lines connecting dots -->
-          <path d="M150 195 Q262 130 375 172" stroke="rgba(232,168,50,0.4)" stroke-width="1" stroke-dasharray="4 4"/>
-          <path d="M375 172 Q465 120 555 210" stroke="rgba(232,168,50,0.4)" stroke-width="1" stroke-dasharray="4 4"/>
-          <path d="M555 210 L630 185" stroke="rgba(232,168,50,0.4)" stroke-width="1" stroke-dasharray="4 4"/>
-          <!-- labels -->
-          <text x="128" y="218" fill="rgba(232,168,50,0.7)" font-size="10" font-family="monospace">NY</text>
-          <text x="355" y="165" fill="rgba(232,168,50,0.7)" font-size="10" font-family="monospace">EUR</text>
-          <text x="535" y="200" fill="rgba(232,168,50,0.7)" font-size="10" font-family="monospace">ME</text>
-          <text x="610" y="178" fill="rgba(232,168,50,0.7)" font-size="10" font-family="monospace">APAC</text>
-        </svg>
+    <div class="product-card">
+      <div class="product-card-header">
+        <div class="product-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3>Glycols</h3>
       </div>
+      <ul class="product-items">
+        <li>Monoethylene Glycol (MEG)</li>
+        <li>Diethylene Glycol (DEG)</li>
+        <li>Triethylene Glycol (TEG)</li>
+        <li>Propylene Glycol (PGi)</li>
+        <li>Hexylene Glycol</li>
+      </ul>
+    </div>
+
+    <div class="product-card">
+      <div class="product-card-header">
+        <div class="product-icon">
+          <svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9m-12 12H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+        </div>
+        <h3>Ethanolamines</h3>
+      </div>
+      <ul class="product-items">
+        <li>Monoethanolamine (MEA)</li>
+        <li>Diethanolamine (DEA)</li>
+        <li>Triethanolamine (TEA)</li>
+      </ul>
+    </div>
+
+    <div class="product-card">
+      <div class="product-card-header">
+        <div class="product-icon">
+          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3>Glycol Ethers</h3>
+      </div>
+      <ul class="product-items">
+        <li>Ethylene Glycol Monobutyl Ether (EB)</li>
+        <li>Diethylene Glycol Monobutyl Ether (DB)</li>
+        <li>Propylene Glycol Monomethyl Ether (PM)</li>
+        <li>Dipropylene Glycol Monomethyl Ether (DPM)</li>
+        <li>PMA &amp; more</li>
+      </ul>
+    </div>
+
+    <div class="product-card">
+      <div class="product-card-header">
+        <div class="product-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+        </div>
+        <h3>Ethyleneamines</h3>
+      </div>
+      <ul class="product-items">
+        <li>Aminoethylethanolamine (AEEA)</li>
+        <li>Ethylenediamine (EDA)</li>
+        <li>Diethylenetriamine (DETA)</li>
+        <li>Tetraethylenepentamine (TEPA)</li>
+        <li>Triethylenetriamine (TETA)</li>
+      </ul>
+    </div>
+
+    <div class="product-card">
+      <div class="product-card-header">
+        <div class="product-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        </div>
+        <h3>Plasticizers</h3>
+      </div>
+      <ul class="product-items">
+        <li>DOTP</li>
+        <li>DINP</li>
+        <li>TOTM</li>
+        <li>DOA</li>
+        <li>DINCH / DHIN, TPEG, VPEG</li>
+      </ul>
+    </div>
+
+    <div class="product-card">
+      <div class="product-card-header">
+        <div class="product-icon">
+          <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <h3>C5 Products</h3>
+      </div>
+      <ul class="product-items">
+        <li>Isoprene (IPM)</li>
+        <li>Dicyclopentadiene (DCPD)</li>
+        <li>Piperylene</li>
+        <li>Isoamylene</li>
+      </ul>
+    </div>
+
+    <div class="product-card">
+      <div class="product-card-header">
+        <div class="product-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg>
+        </div>
+        <h3>Surfactants & More</h3>
+      </div>
+      <ul class="product-items">
+        <li>Alkyl Phenol Ethoxylates</li>
+        <li>Fatty Alcohol Ethoxylates</li>
+        <li>LABSA / DDBSA</li>
+        <li>Isophthalic Acid</li>
+        <li>Quats, Pyridine, Triazine</li>
+      </ul>
+    </div>
+
+    <div class="product-card">
+      <div class="product-card-header">
+        <div class="product-icon">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        </div>
+        <h3>Alcohols & Specialty</h3>
+      </div>
+      <ul class="product-items">
+        <li>Isopropyl Alcohol (IPA)</li>
+        <li>Pentaerythritol</li>
+        <li>Alkyl Pyridine</li>
+        <li>MEA Triazine 50% &amp; 78%</li>
+        <li>Custom Formulations</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="why-header reveal">
+    <div class="section-eyebrow">Our Advantage</div>
+    <h2 class="section-title">Why TransGlobe?</h2>
+  </div>
+  <div class="why-grid reveal">
+    <div class="why-card">
+      <div class="why-card-num">01</div>
+      <h3>Global Reach</h3>
+      <p>Established supplier and customer relationships spanning North America, Europe, Asia, and the Middle East, enabling reliable cross-border trade.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-card-num">02</div>
+      <h3>Breadth of Portfolio</h3>
+      <p>Over 50 product lines across specialty, commodity, and intermediate chemicals — one trusted partner for your diverse sourcing needs.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-card-num">03</div>
+      <h3>Logistics Expertise</h3>
+      <p>Deep experience navigating complex international chemical logistics, compliance, and documentation requirements with precision.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-card-num">04</div>
+      <h3>Responsive Service</h3>
+      <p>A lean, dedicated team that moves quickly and communicates clearly — because responsive partners create competitive advantages.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-card-num">05</div>
+      <h3>Value-Driven</h3>
+      <p>We optimize total cost — not just price — delivering competitive value through efficient operations and strategic supplier partnerships.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-card-num">06</div>
+      <h3>Trusted Integrity</h3>
+      <p>Long-term relationships built on transparency, reliability, and consistent follow-through define how we do business every day.</p>
     </div>
   </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact">
-  <div class="section-inner">
-    <div class="section-label">Get In Touch</div>
-    <h2 class="section-h2">Let's Work Together</h2>
-
-    <div class="contact-grid reveal">
-      <div class="contact-info">
-        <div class="info-item">
-          <div class="info-label">Headquarters</div>
-          <div class="info-value">425 Broadhollow Road, Suite 427<br>Melville, NY 11747</div>
+  <div class="contact-info reveal">
+    <div class="section-eyebrow">Get in Touch</div>
+    <h2>Ready to work together?</h2>
+    <p>Tell us what chemicals you're looking to source or market. Our team will respond promptly with competitive terms and availability.</p>
+    <div class="contact-details">
+      <div class="contact-item">
+        <div class="contact-item-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
         </div>
-        <div class="info-item">
-          <div class="info-label">Phone</div>
-          <div class="info-value"><a href="tel:7163024406">(716) 302-4406</a></div>
-        </div>
-        <div class="info-item">
-          <div class="info-label">Email</div>
-          <div class="info-value"><a href="mailto:contact@transglobe-energy.com">contact@transglobe-energy.com</a></div>
-        </div>
-        <div class="info-item">
-          <div class="info-label">Business Hours</div>
-          <div class="info-value">Monday – Friday<br>9:00 AM – 6:00 PM EST</div>
+        <div class="contact-item-text">
+          <strong>Address</strong>
+          <span>425 Broadhollow Road, Suite 427<br>Melville, NY 11747</span>
         </div>
       </div>
-
-      <form class="contact-form" onsubmit="handleSubmit(event)">
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label">Your Name</label>
-            <input class="form-input" type="text" placeholder="John Smith">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Company</label>
-            <input class="form-input" type="text" placeholder="Acme Corp">
-          </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.21 1.17 2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09A16 16 0 0016.9 17.08l.62-.62a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
         </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label">Email</label>
-            <input class="form-input" type="email" placeholder="john@company.com">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Phone</label>
-            <input class="form-input" type="tel" placeholder="+1 000 000 0000">
-          </div>
+        <div class="contact-item-text">
+          <strong>Phone</strong>
+          <span>(716) 302-4406</span>
         </div>
-        <div class="form-group">
-          <label class="form-label">How Can We Help?</label>
-          <textarea class="form-textarea" placeholder="Tell us about your chemical sourcing needs…"></textarea>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         </div>
-        <button type="submit" class="form-submit" id="submitBtn">Send Message →</button>
-      </form>
+        <div class="contact-item-text">
+          <strong>Email</strong>
+          <span>contact@transglobe-energy.com</span>
+        </div>
+      </div>
     </div>
+  </div>
+
+  <div class="contact-form-wrap reveal">
+    <h3>Send a Message</h3>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" placeholder="John Smith">
+      </div>
+      <div class="form-group">
+        <label>Company</label>
+        <input type="text" placeholder="Company Inc.">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="john@company.com">
+      </div>
+      <div class="form-group">
+        <label>Phone</label>
+        <input type="tel" placeholder="+1 (800) 000-0000">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Product Interest</label>
+      <select>
+        <option value="">Select a product category...</option>
+        <option>Benzyl Products</option>
+        <option>Glycols</option>
+        <option>Ethanolamines</option>
+        <option>Glycol Ethers</option>
+        <option>Ethyleneamines</option>
+        <option>Plasticizers</option>
+        <option>C5 Products</option>
+        <option>Surfactants &amp; Intermediates</option>
+        <option>Alcohols &amp; Specialty</option>
+        <option>Other / Multiple</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>How can we help?</label>
+      <textarea placeholder="Tell us about your requirements — product, volume, delivery timeline, etc."></textarea>
+    </div>
+    <button class="form-submit">Send Message →</button>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">Transglobe Energy</div>
+  <div>
+    <div class="footer-logo-text">TransGlobe Energy LLC</div>
+    <div class="footer-logo-sub">Global Petrochemical Solutions</div>
+  </div>
   <ul class="footer-links">
     <li><a href="#about">About</a></li>
     <li><a href="#products">Products</a></li>
+    <li><a href="#why">Why Us</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <div class="footer-copy">© 2025 Transglobe Energy. All rights reserved.</div>
+  <div class="footer-copy">© 2025 TransGlobe Energy LLC. All rights reserved.</div>
 </footer>
 
 <script>
-  // Cursor
-  const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursorRing');
-  let mx = 0, my = 0, rx = 0, ry = 0;
-  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-  function animateCursor() {
-    cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
-    rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
-    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
-    requestAnimationFrame(animateCursor);
-  }
-  animateCursor();
-  document.querySelectorAll('a,button,.product-card,.filter-btn,.feature-chip,.region-row').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      cursor.style.width = '20px'; cursor.style.height = '20px';
-      ring.style.width = '52px'; ring.style.height = '52px';
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), 100);
+        observer.unobserve(e.target);
+      }
     });
-    el.addEventListener('mouseleave', () => {
-      cursor.style.width = '10px'; cursor.style.height = '10px';
-      ring.style.width = '36px'; ring.style.height = '36px';
-    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Nav scroll effect
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) {
+      nav.style.height = '58px';
+    } else {
+      nav.style.height = '68px';
+    }
   });
 
-  // Scroll reveal
-  const revealEls = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-  }, { threshold: 0.08 });
-  revealEls.forEach(el => observer.observe(el));
-
-  // Product filter
-  function filterProducts(cat, btn) {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    document.querySelectorAll('.product-card').forEach(card => {
-      const show = cat === 'all' || card.dataset.cat === cat;
-      card.style.display = show ? '' : 'none';
-    });
-  }
+  // Stagger product cards
+  document.querySelectorAll('.product-card').forEach((card, i) => {
+    card.style.animationDelay = `${i * 0.05}s`;
+  });
 
   // Form submit
-  function handleSubmit(e) {
-    e.preventDefault();
-    const btn = document.getElementById('submitBtn');
-    btn.textContent = 'Message Sent ✓';
-    btn.style.background = '#2d9e5f';
-    btn.style.color = '#fff';
-    setTimeout(() => { btn.textContent = 'Send Message →'; btn.style.background = ''; btn.style.color = ''; }, 3000);
-  }
+  document.querySelector('.form-submit').addEventListener('click', () => {
+    document.querySelector('.form-submit').textContent = 'Message Sent ✓';
+    document.querySelector('.form-submit').style.background = '#2e7d32';
+    setTimeout(() => {
+      document.querySelector('.form-submit').textContent = 'Send Message →';
+      document.querySelector('.form-submit').style.background = '';
+    }, 3000);
+  });
 </script>
 </body>
 </html>
