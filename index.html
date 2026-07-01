@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TransGlobe Energy — Global Petrochemical Solutions</title>
+<title>Transglobe Energy — Global Petrochemical Solutions</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -44,8 +44,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 4rem;
-    height: 68px;
+    padding: 1rem 4rem;
+    min-height: 68px;
     transition: all 0.3s ease;
   }
 
@@ -57,16 +57,16 @@
   }
 
   .nav-logo-icon {
-    width: 44px;
-    height: 44px;
+    width: clamp(48px, 5.2vw, 72px);
+    height: clamp(48px, 5.2vw, 72px);
     background: var(--tge-blue);
-    border-radius: 6px;
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 800;
-    font-size: 1.1rem;
+    font-size: clamp(1.1rem, 1.8vw, 1.8rem);
     color: white;
     letter-spacing: 0.02em;
     flex-shrink: 0;
@@ -79,22 +79,15 @@
     line-height: 1.1;
   }
 
-  .nav-logo-text span:first-child {
+  .nav-logo-text span {
     font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 1rem;
-    color: white;
+    font-weight: 600;
+    font-size: clamp(1.6rem, 3.2vw, 3.1rem);
+    color: var(--tge-accent);
     letter-spacing: 0.12em;
     text-transform: uppercase;
-  }
-
-  .nav-logo-text span:last-child {
-    font-family: 'Barlow', sans-serif;
-    font-weight: 300;
-    font-size: 0.7rem;
-    color: var(--tge-accent);
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
+    line-height: 1;
+    display: block;
   }
 
   .nav-links {
@@ -268,13 +261,13 @@
   .hero-eyebrow {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 1.8rem;
+    gap: 12px;
+    margin-bottom: 1rem;
     font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 600;
-    font-size: 0.8rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: 0.2em;
+    text-transform: none;
     color: var(--tge-accent);
   }
 
@@ -289,10 +282,10 @@
   .hero-title {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 800;
-    font-size: clamp(3rem, 6vw, 5.5rem);
-    line-height: 0.95;
+    font-size: clamp(2.6rem, 5.2vw, 4.8rem);
+    line-height: 1.0;
     color: white;
-    text-transform: uppercase;
+    text-transform: none;
     letter-spacing: -0.01em;
     margin-bottom: 1.8rem;
   }
@@ -1075,8 +1068,7 @@
   <a class="nav-logo" href="#">
     <div class="nav-logo-icon">TGE</div>
     <div class="nav-logo-text">
-      <span>TransGlobe</span>
-      <span>Energy</span>
+      <span>TRANSGLOBE ENERGY</span>
     </div>
   </a>
   <ul class="nav-links">
@@ -1289,13 +1281,10 @@
   <div class="hero-content">
     <div class="hero-eyebrow">Global Petrochemical Solutions</div>
     <h1 class="hero-title">
-      Moving<br>
-      Chemicals<br>
+      Delivering Sustainable,<br>
+      Responsible Chemistry<br>
       <span class="accent-line">Worldwide</span>
     </h1>
-    <p class="hero-body">
-      TransGlobe Energy is a global logistics and marketing company facilitating the efficient movement of specialty, commodity, and intermediate chemicals across international supply chains.
-    </p>
     <div class="hero-actions">
       <a href="#products" class="btn-primary">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
@@ -1337,7 +1326,7 @@
     <div class="section-eyebrow">Our Story</div>
     <h2 class="section-title">Built for Global Trade</h2>
     <p class="about-body">
-      TransGlobe Energy is a global logistics and marketing company facilitating the efficient movement of petrochemicals worldwide. We deliver sustainable, value-driven solutions to the complex supply chain of international trade — empowering suppliers and customers to achieve their core competencies.
+      Transglobe Energy is a global logistics and marketing company enabling the sustainable, ethical, and efficient movement of specialty, commodity, and intermediate chemicals across international supply chains.
     </p>
     <div class="about-pillars">
       <div class="pillar">
@@ -1573,7 +1562,7 @@
 <section id="why">
   <div class="why-header reveal">
     <div class="section-eyebrow">Our Advantage</div>
-    <h2 class="section-title">Why TransGlobe?</h2>
+    <h2 class="section-title">Why Transglobe?</h2>
   </div>
   <div class="why-grid reveal">
     <div class="why-card">
@@ -1696,7 +1685,7 @@
 <!-- FOOTER -->
 <footer>
   <div>
-    <div class="footer-logo-text">TransGlobe Energy</div>
+    <div class="footer-logo-text">Transglobe Energy</div>
     <div class="footer-logo-sub">Global Petrochemical Solutions</div>
   </div>
   <ul class="footer-links">
@@ -1705,7 +1694,7 @@
     <li><a href="#why">Why Us</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <div class="footer-copy">© 2026 TransGlobe Energy. All rights reserved.</div>
+  <div class="footer-copy">© 2026 Transglobe Energy. All rights reserved.</div>
 </footer>
 
 <script>
@@ -1725,9 +1714,9 @@
   const nav = document.querySelector('nav');
   window.addEventListener('scroll', () => {
     if (window.scrollY > 60) {
-      nav.style.height = '58px';
+      nav.style.padding = '0.5rem 4rem';
     } else {
-      nav.style.height = '68px';
+      nav.style.padding = '1rem 4rem';
     }
   });
 
