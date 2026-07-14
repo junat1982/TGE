@@ -2084,39 +2084,79 @@
   })();
 
   // Form submit
-  document.getElementById('form-submit-btn').addEventListener('click', () => {
-    const name = document.querySelector('input[placeholder="John Smith"]');
-    const email = document.getElementById('f-email');
-    const phone = document.getElementById('f-phone');
-    const product = document.getElementById('f-product');
-    const error = document.getElementById('form-error');
-    const btn = document.getElementById('form-submit-btn');
+  document.getElementById('form-submit-btn').addEventListener('click', async () => {
+    const nameEl    = document.querySelector('input[placeholder="John Smith"]');
+    const companyEl = document.querySelector('input[placeholder="Company Inc."]');
+    const emailEl   = document.getElementById('f-email');
+    const phoneEl   = document.getElementById('f-phone');
+    const productEl = document.getElementById('f-product');
+    const messageEl = document.querySelector('textarea');
+    const errorEl   = document.getElementById('form-error');
+    const btn       = document.getElementById('form-submit-btn');
 
-    const fields = [name, email, phone, product];
+    // Validate required fields
+    const required = [nameEl, emailEl, phoneEl, productEl];
     let valid = true;
-
-    fields.forEach(f => {
+    required.forEach(f => {
       const empty = f.tagName === 'SELECT' ? f.value === '' : f.value.trim() === '';
-      if (empty) {
-        f.style.borderColor = '#e53935';
-        valid = false;
-      } else {
-        f.style.borderColor = '';
-      }
+      f.style.borderColor = empty ? '#e53935' : '';
+      if (empty) valid = false;
     });
 
-    if (!valid) {
-      error.style.display = 'block';
-      return;
-    }
+    if (!valid) { errorEl.style.display = 'block'; return; }
+    errorEl.style.display = 'none';
 
-    error.style.display = 'none';
-    btn.textContent = 'Message Sent ✓';
-    btn.style.background = '#2e7d32';
-    setTimeout(() => {
-      btn.textContent = 'Send Message →';
-      btn.style.background = '';
-    }, 3000);
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+    btn.style.opacity = '0.7';
+
+    try {
+      const res = await fetch('https://formspree.io/f/mjgqpppd', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          name:    nameEl.value.trim(),
+          company: companyEl.value.trim(),
+          email:   emailEl.value.trim(),
+          phone:   phoneEl.value.trim(),
+          product: productEl.value,
+          message: messageEl.value.trim()
+        })
+      });
+
+      if (res.ok) {
+        btn.textContent = 'Message Sent ✓';
+        btn.style.background = '#2e7d32';
+        btn.style.opacity = '1';
+        // Clear the form
+        [nameEl, companyEl, emailEl, phoneEl, messageEl].forEach(f => f.value = '');
+        productEl.value = '';
+        setTimeout(() => {
+          btn.textContent = 'Send Message →';
+          btn.style.background = '';
+          btn.disabled = false;
+        }, 4000);
+      } else {
+        const data = await res.json();
+        btn.textContent = 'Error — Try Again';
+        btn.style.background = '#c62828';
+        btn.style.opacity = '1';
+        btn.disabled = false;
+        setTimeout(() => {
+          btn.textContent = 'Send Message →';
+          btn.style.background = '';
+        }, 3000);
+      }
+    } catch (err) {
+      btn.textContent = 'Network Error — Try Again';
+      btn.style.background = '#c62828';
+      btn.style.opacity = '1';
+      btn.disabled = false;
+      setTimeout(() => {
+        btn.textContent = 'Send Message →';
+        btn.style.background = '';
+      }, 3000);
+    }
   });
 </script>
 </body>
